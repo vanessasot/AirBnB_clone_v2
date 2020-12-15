@@ -3,13 +3,14 @@
 import cmd
 import sys
 from models.base_model import BaseModel
-from models.__init__ import storage
+from models import storage
 from models.user import User
 from models.place import Place
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+from shlex import split
 
 
 class HBNBCommand(cmd.Cmd):
@@ -114,17 +115,35 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """ Create an object of any class"""
-        if not args:
+        """ Create an object of any class """
+        if not args:  # if not argument is passed
             print("** class name missing **")
             return
-        elif args not in HBNBCommand.classes:
-            print("** class doesn't exist **")
+
+        # All arguments passed in the standard input
+        my_list = args.split()
+        # name of the passed class
+        # take the argument at position 0 that is in my_list
+        c_name = my_list[0]
+
+        if c_name not in HBNBCommand.classes:
+            print("** class doesn't exist **")  # if a class not exist
             return
-        new_instance = HBNBCommand.classes[args]()
-        storage.save()
+
+        new_instance = HBNBCommand.classes[c_name]()
+
+        for parameter in my_list[1:]:
+            # print(parameter)
+            key = parameter.split("=")[0]
+            value = parameter.split("=")[1]
+            value = value.replace('\"', '').replace('_', ' ')
+            if '.' in value and (key == "latitude" or key == "longitude"):
+                value = float(value)
+            elif value.isdigit():
+                value = int(value)
+            setattr(new_instance, key, value)
+        new_instance.save()
         print(new_instance.id)
-        storage.save()
 
     def help_create(self):
         """ Help information for the create method """

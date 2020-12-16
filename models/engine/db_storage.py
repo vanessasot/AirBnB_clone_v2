@@ -38,8 +38,7 @@ class DBStorage:
         """
         class_objects = {}
         if cls is None:
-            objects = self.__session.query(User, State, City, Amenity, Place,
-                                           Review)
+            objects = self.__session.query(User, State, City)
             for obj in objects:
                 key = type(obj).__name__ + "." + str(obj.id)
                 class_objects[key] = obj

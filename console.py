@@ -117,32 +117,37 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ Create an object of any class """
-        if not args:  # if not argument is passed
-            print("** class name missing **")
-            return
 
-        # All arguments passed in the standard input
+# All arguments passed in the standard input
         my_list = args.split()
         # name of the passed class
         # take the argument at position 0 that is in my_list
         c_name = my_list[0]
 
-        if c_name not in HBNBCommand.classes:
+        if not args:  # if not argument is passed
+            print("** class name missing **")
+            return
+
+        elif c_name not in HBNBCommand.classes:
             print("** class doesn't exist **")  # if a class not exist
             return
 
         new_instance = HBNBCommand.classes[c_name]()
 
-        for parameter in my_list[1:]:
-            # print(parameter)
-            key = parameter.split("=")[0]
-            value = parameter.split("=")[1]
-            value = value.replace('\"', '').replace('_', ' ')
-            if '.' in value and (key == "latitude" or key == "longitude"):
-                value = float(value)
-            elif value.isdigit():
-                value = int(value)
-            setattr(new_instance, key, value)
+        if len(my_list) >= 2:
+            for parameter in my_list[1:]:
+                # print(parameter)
+                key = parameter.split("=")[0]
+                value = parameter.split("=")[1]
+                if value[0] == '"':
+                    value = value.replace('"', '')
+                    value = value.replace('_', ' ')
+                elif value.isdecimal():
+                    value = int(value)
+                else:
+                    value = float(value)
+                setattr(new_instance, key, value)
+
         new_instance.save()
         print(new_instance.id)
 

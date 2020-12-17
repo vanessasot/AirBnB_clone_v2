@@ -14,8 +14,8 @@ class FileStorage:
             return FileStorage.__objects
         else:
             type_cls = {}
-            for key, value in self.__objects.items():
-                find_cls = value.__class__
+            for key, value in FileStorage.__objects.items():
+                find_cls = value.__class__.__name__
                 if cls == find_cls:
                     type_cls[key] = value
             return type_cls

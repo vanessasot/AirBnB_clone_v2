@@ -15,9 +15,13 @@ class FileStorage:
         else:
             type_cls = {}
             for key, value in FileStorage.__objects.items():
-                find_cls = value.__class__.__name__
-                if cls == find_cls:
-                    type_cls[key] = value
+                find_cls = type(value).__name__
+                if type(cls).__name__ == "str":
+                    if cls == find_cls:
+                        type_cls[key] = value
+                else:
+                    if cls.__name__ == find_cls:
+                        type_cls[key] = value
             return type_cls
 
     def new(self, obj):

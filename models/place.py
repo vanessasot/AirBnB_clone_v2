@@ -45,8 +45,7 @@ class Place(BaseModel, Base):
                                cascade='all, delete')
         amenities = relationship('Amenity',
                                  secondary='place_amenity',
-                                 viewonly=False,
-                                 backref='place')
+                                 viewonly=False)
 
     else:
         @property

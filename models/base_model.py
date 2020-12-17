@@ -26,7 +26,7 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
         else:
-            for key, value in kwargs.item():
+            for key, value in kwargs.items():
                 if key in ['created_at', 'updated_at']:
                     value_f = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
                     setattr(self, key, value_f)

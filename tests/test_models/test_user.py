@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" test user """
+""" """
 from tests.test_models.test_base_model import test_basemodel
 from models.user import User
 import pep8
@@ -8,7 +8,7 @@ import unittest
 
 
 class test_User(test_basemodel):
-    """ Test User """
+    """ """
 
     def __init__(self, *args, **kwargs):
         """ """
@@ -16,19 +16,19 @@ class test_User(test_basemodel):
         self.name = "User"
         self.value = User
 
-    def test_doc(self):
-        """
-        Tests if everything is documented
-        """
-        #  Module check
-        self.assertIsNotNone(console.__doc__)
+    # def test_doc(self):
+    #     """
+    #     Tests if everything is documented
+    #     """
+    #     #  Module check
+    #     self.assertIsNotNone(console.__doc__)
 
-        #  Class check
-        self.assertIsNotNone(HBNBCommand.__doc__)
+    #     #  Class check
+    #     self.assertIsNotNone(HBNBCommand.__doc__)
 
-        # Methods check
-        for method in dir(HBNBCommand):
-            self.assertIsNotNone(method.__doc__)
+    #     # Methods check
+    #     for method in dir(HBNBCommand):
+    #         self.assertIsNotNone(method.__doc__)
 
     def test_pep8(self):
         """ Style pep8 """

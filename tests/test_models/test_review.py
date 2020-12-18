@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" test review """
+""" """
 from tests.test_models.test_base_model import test_basemodel
 from models.review import Review
 import unittest
@@ -8,21 +8,21 @@ from models.base_model import BaseModel
 
 
 class test_review(test_basemodel):
-    """ test review """
+    """ """
 
-    def test_doc(self):
-        """
-        Tests if everything is documented
-        """
-        #  Module check
-        self.assertIsNotNone(console.__doc__)
+    # def test_doc(self):
+    #     """
+    #     Tests if everything is documented
+    #     """
+    #     #  Module check
+    #     self.assertIsNotNone(console.__doc__)
 
-        #  Class check
-        self.assertIsNotNone(HBNBCommand.__doc__)
+    #     #  Class check
+    #     self.assertIsNotNone(HBNBCommand.__doc__)
 
-        # Methods check
-        for method in dir(HBNBCommand):
-            self.assertIsNotNone(method.__doc__)
+    #     # Methods check
+    #     for method in dir(HBNBCommand):
+    #         self.assertIsNotNone(method.__doc__)
 
     def test_pep8(self):
         """ Style pep8 """
